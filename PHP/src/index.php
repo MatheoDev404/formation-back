@@ -272,12 +272,102 @@
 
     // revient à écrire :
     if($a == 1){
-        $b = '$a vaut 1'
+        $b = '$a vaut 1';
     }else {
-        $b = '$a ne vaut pas 1'
+        $b = '$a ne vaut pas 1';
     }
 
     ?>
+    <h2>Boucles</h2>
+
+    <?php 
+    $i = 0;
+    while ($i < 3) {
+        echo $i ;
+        $i++;
+        
+    }
+    
+    $j = 1;
+    while ($j < 5) {
+        if ($j % 3 == 0) {
+            echo 'fin';
+            break;
+        }
+        echo $j ;
+        $j++;
+        
+    }
+ 
+    for ($i=0; $i < 3; $i++) { 
+        if ($j % 3 == 0) {
+            echo 'fin';
+            break;
+        }
+        echo $i ;
+    }
+    ?>
+
+    <!-- Construire une liste déroulante  -->
+    <form action="" methode="get">
+        <select name="" id="">
+            <?php
+            for($i=1;$i<=31;$i++){echo"<option value=\"$i\">$i</option>";}
+            ?>
+        </select>
+    </form>
+    
+    <!-- Construire un tableau d'une ligne sur 8 case sur 8 colonnes  -->
+    <table style="background-color: red">
+        <?php
+
+
+        for ($j=0; $j <= 8 ; $j++) { 
+            
+            echo "<tr style=\"background-color: green\">";
+            
+            for ($i= 1; $i <= 8 ; $i++){  
+                    if($j%2 == 1){
+                        if ($i%2 == 1){
+                            echo "<td style=\"background-color: gray\">$i</td>";
+                        }else{
+                            echo "<td style=\"background-color: pink\">$i</td>";
+                        }
+                    }else{
+                        if ($i%2 == 0){
+                            echo "<td style=\"background-color: gray\">$i</td>";
+                        }else{
+                            echo "<td style=\"background-color: pink\">$i</td>";
+                        }
+                    }
+                }
+
+            echo "</tr>";
+
+        }
+
+        for ($j=0; $j <= 8 ; $j++) { 
+            
+            echo "<tr style=\"background-color: green\">";
+            
+            for ($i= 1; $i <= 8 ; $i++){  
+                    $style =  (($i + $j) % 2 == 0)
+                            ? 'style="background-color:orange'
+                            : ''
+                    ;
+                    echo "<td $style> $i - $j </td>";
+                }
+
+            echo "</tr>";
+
+        }
+
+        
+        ?>
+    </table>
+
+ 
+      
 
 </body>
 <script src="assets/js/main.js"></script>
