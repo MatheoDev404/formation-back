@@ -181,12 +181,12 @@
     
     
     if(isset($a)){ // Détermine si une variable est définie et est différente de NULL
-        echo'$a existe et n\'est pas nul'
+        echo'$a existe et n\'est pas nul';
     }
     echo '</br>';
 
     if(!empty($a)){ // Détermine si une variable est définie et est différente de NULL
-        echo'$a existe et n\'est pas vide'
+        echo'$a existe et n\'est pas vide';
     }
     // sont vide : null, 0 , 0.0, false, '0', '0.0', '', []. 
     echo '</br>';
@@ -226,7 +226,37 @@
         echo '</br>';
     }
 
+    ?>
 
+    <h2>Switch</h2>
+
+    <?php 
+    
+    $couleur = 'bleu';
+
+    switch ($couleur) {
+        case 'rouge':
+            echo '</br>la couleur est rouge</br>';
+            break;
+        case 'bleu':
+            echo '</br>la couleur est bleu</br>';
+            break;
+        case 'jaune':
+            echo '</br>la couleur est jaune</br>';
+            break;
+        default:// optionnel
+            echo '</br>la couleur est inconnue</br>';
+    }
+    
+    if ($couleur === 'rouge') {
+        echo '</br>la couleur est rouge</br>';
+    }else if ($couleur === 'bleu') {
+        echo '</br>la couleur est bleu</br>';
+    }else if ($couleur === 'jaune') {
+        echo '</br>la couleur est jaune</br>';
+    }else{
+        echo '</br>la couleur est inconnue</br>';
+    }
     ?>
 
 </body>
