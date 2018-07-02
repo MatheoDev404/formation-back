@@ -107,6 +107,126 @@
     echo '</br><strong> $i++ équivaut à $i = $i + 1 </strong></br>' . $i;
     $i++; 
     echo '</br>' . $i;
+
+    ?>
+    
+    <h2>Conditions</h2>
+    
+    <?php 
+
+    $vrai = true;
+    if($vrai){
+        echo '$vrai est vrai';
+    }
+
+    $faux = false;
+    if($faux){ // la condition n'es pas vérifiée, on entre pas dans la condition.
+        echo '</br>$faux est vrai</br>';
+    }else {
+        echo '</br>$faux est faux</br>';
+    }
+
+    if($faux){ // la condition n'es pas vérifiée, on entre pas dans la condition.
+        echo '</br>$faux est vrai</br>';
+    }else if($vrai){
+        echo '</br>$faux est faux $vrai est vrai</br>';
+    }
+    else {
+        echo '</br>$faux est faux</br>';
+    }
+
+
+    $str = 'test';
+
+    
+    if ($str == 'test'){ // test l'égalité
+        echo '</br>$str vaut "test"</br>';
+    }
+    
+    if ($str != 'bonjour'){ // test l'inégalité
+        echo '</br>$str ne vaut pas "bonjour"</br>';
+    }
+
+    $a = 10; // INT
+    $b = '10'; // STRING
+
+    echo '</br>';
+    var_dump($a == $b); // vrai : même valeur
+    echo '</br>';
+    
+    echo '</br>';
+    var_dump($a != $b); // faux : même valeur
+    echo '</br>';
+
+    echo '</br>';
+    var_dump($a === $b); // faux : même valeur, mais pas le même type;
+    echo '</br>';
+    
+    echo '</br>';
+    var_dump($a !== $b); // vrai : même valeur, mais pas le même type;
+    echo '</br>';
+    
+    $a = 1;
+    $b = 2;
+    
+    echo '</br>';
+    var_dump($a > $b); // $a supérieur à $b (faux);
+    echo '</br>';
+    var_dump($a < $b); // $a inférieur à $b (vrai);
+    echo '</br>';
+    var_dump($a >= $b); // $a supérieur ou égale à $b (faux);
+    echo '</br>';
+    var_dump($a <= $b); // $a inférieur ou égale à $b (vrai);
+    echo '</br>';
+    
+    
+    if(isset($a)){ // Détermine si une variable est définie et est différente de NULL
+        echo'$a existe et n\'est pas nul'
+    }
+    echo '</br>';
+
+    if(!empty($a)){ // Détermine si une variable est définie et est différente de NULL
+        echo'$a existe et n\'est pas vide'
+    }
+    // sont vide : null, 0 , 0.0, false, '0', '0.0', '', []. 
+    echo '</br>';
+    
+    $a = 1;
+    $b = 2;
+    $c = 3;
+    $d = 4;
+    
+    // ET logique : &&
+    if ( $b > $a && $c > $b ) {
+        echo '$b > $a ET $c > $b ';
+        echo '</br>';
+    }
+
+    // OU logique : ||
+    if ( $b > $a || $c > $b ) {
+        echo '$b > $a OU $c > $b ';
+        echo '</br>';
+    }
+
+    // OU exclusif : XOR
+    if ( $b > $a XOR $c > $b ) {
+        echo '$b > $a OU $c > $b MAIS PAS les 2 à la fois';
+        echo '</br>';
+    }
+
+    // Priorité du ET sur le OU 
+    if ( $b > $a || $c > $b && $c > $d) {
+        echo '$b > $a OU ($c > $b ET $c > $d)';
+        echo '</br>';
+    }
+
+    // le sparenthèses pour forcer la priorité sur le OU
+    if ( ($b > $a || $c > $b) && $c > $d) {
+        echo '($b > $a OU $c > $b) ET $c > $d';
+        echo '</br>';
+    }
+
+
     ?>
 
 </body>
