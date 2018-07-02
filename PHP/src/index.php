@@ -64,6 +64,13 @@
     // define() : Définit une constante
     define('VILLE', 'Paris');
     echo VILLE;
+    
+    echo '<br>';
+    echo __FILE__ ; // renvois le fichier dans lequel on se trouve
+    echo '<br>';
+    echo __LINE__; // la ligne à laquelle on se trouve
+    echo '<br>';
+    echo __DIR__; // le répertoir dans lequel on se trouve
 
     ?>
 </body>
