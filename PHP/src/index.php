@@ -63,6 +63,7 @@
     <?php 
     // define() : Définit une constante
     define('VILLE', 'Paris');
+    echo VILLE;
 
     ?>
 </body>
