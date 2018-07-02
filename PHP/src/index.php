@@ -65,14 +65,50 @@
     define('VILLE', 'Paris');
     echo VILLE;
     
-    echo '<br>';
+    echo '<br> <strong>renvois le fichier dans lequel on se trouve : <br></strong>';
     echo __FILE__ ; // renvois le fichier dans lequel on se trouve
-    echo '<br>';
+    echo '<br> <strong>la ligne à laquelle on se trouve : <br></strong>';
     echo __LINE__; // la ligne à laquelle on se trouve
-    echo '<br>';
+    echo '<br> <strong>le répertoir dans lequel on se trouve :<br></strong>';
     echo __DIR__; // le répertoir dans lequel on se trouve
-
+    
     ?>
+
+    <h2>Opérateurs arithmétiques</h2>
+    
+    <?php 
+    $a = 2;
+    $b = 6;
+
+    echo '<br> <strong>addition :<br></strong>';
+    echo $a + $b;
+    echo '<br> <strong>soustraction :<br></strong>';
+    echo $a - $b;
+    echo '<br> <strong>multiplication :<br></strong>';
+    echo $a * $b;
+    echo '<br> <strong>division :<br></strong>';
+    echo $a / $b;
+    echo '<br> <strong>modulo :<br></strong>';
+    echo $a % $b;
+    echo '</br>';
+
+    //Raccourcis d'écritures:
+
+    $a += $b; // $a = $a + $b
+    echo '</br><strong> += équivaut à $a = $a + $b </strong></br>' . $a;
+
+    $a = 'bonjour';
+    $b = ' le monde';
+    $a .= $b; // $a = $a . $b
+    echo '</br><strong> +.= équivaut à $a = $a . $b </strong></br>' . $a;
+
+    $i = 0;
+    $i++; // $i = $i + 1
+    echo '</br><strong> $i++ équivaut à $i = $i + 1 </strong></br>' . $i;
+    $i++; 
+    echo '</br>' . $i;
+    ?>
+
 </body>
 <script src="assets/js/main.js"></script>
 </html>
