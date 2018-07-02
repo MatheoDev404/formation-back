@@ -259,6 +259,26 @@
     }
     ?>
 
+    <h2>Opérateur ternaire</h2>
+
+    <?php 
+    
+    $a = 1;
+
+    $b = ($a == 1)  // condition
+        ? '$a vaut 1' // si vrai
+        : '$a ne vaut pas 1' // si faux
+    ;
+
+    // revient à écrire :
+    if($a == 1){
+        $b = '$a vaut 1'
+    }else {
+        $b = '$a ne vaut pas 1'
+    }
+
+    ?>
+
 </body>
 <script src="assets/js/main.js"></script>
 </html>
