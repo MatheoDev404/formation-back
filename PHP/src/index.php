@@ -652,6 +652,25 @@
     echo $now->format('d/m/Y H:i:s');
 
     ?>
+     
+    <h2> Inclusion de fichier</h2>
+
+    <?php 
+    // inclus le fichier inclusion.php.
+    include 'inclusion.php'; // chemin relatif (par rapport au fichier courrant).
+    include 'C:\xampp\htdocs\matheo_stunault\formation-back\PHP\src\inclusion.php'; 
+    include __DIR__ . '/inclusion.php'; // chemin absolu construit à partir du repertoire courant.
+    // En utilisant une constant fournie par le language
+    include __DIR__ . DIRECTORY_SEPARATOR . 'inclusion.php'; 
+
+    // La difference entre include et require est le niveau d'erreur en cas d'echec.
+    // include __DIR__ . '/inclusion.php'; // warning => continue de lire le script.
+    // require __DIR__ . '/inclusion.php'; // Fatal error => interuption du script.
+
+    
+
+
+    ?>
 
 </body>
 <script src="assets/js/main.js"></script>
