@@ -651,11 +651,7 @@
 
     echo $now->format('d/m/Y H:i:s');
 
-    ?>
-     
-    <h2> Inclusion de fichier</h2>
-
-    <?php 
+  
     // inclus le fichier inclusion.php.
     include 'inclusion.php'; // chemin relatif (par rapport au fichier courrant).
     include 'C:\xampp\htdocs\matheo_stunault\formation-back\PHP\src\inclusion.php'; 
@@ -667,9 +663,40 @@
     // include __DIR__ . '/inclusion.php'; // warning => continue de lire le script.
     // require __DIR__ . '/inclusion.php'; // Fatal error => interuption du script.
 
+    ?>
+     
+    <h2>Expression réguliaire</h2>
+
+    <?php 
+
+    var_dump(preg_match('/as/','passe')); //contient 'as'.  
+    echo '<br/>';
+    var_dump(preg_match('/^pa/','passe')); // ^: commence par.   
+    echo '<br/>';
+    var_dump(preg_match('/se$/','passe')); // $: fini par.
+    echo '<br/>';
+    var_dump(preg_match('/[pb]/','passe')); // [pb]: contient un p ou un b;   
+    echo '<br/>';
+    var_dump(preg_match('/[a-z]/','passe')); // [a-z]: contient une lettre comprise entre a et z.   
+    echo '<br/>';
+    var_dump(preg_match('/[a-zA-Z]/','passe')); // [a-zA-Z]: contient une lettre comprise entre a et z, minuscule ou majuscule.   
+    echo '<br/>';
+    var_dump(preg_match('/^[0-9]$/','5')); // ^[0-9]$: contient un seul chiffre.
+    echo '<br/>';
+    var_dump(preg_match('/[0-9]+$/','coucou321')); // [0-9]+$: termine par un ou une sucsession de chiffre.
+    echo '<br/>';
+    var_dump(preg_match('/[0-9]*$/','coucou321')); // [0-9]+$: termine par un ou pas de chiffre.
+    echo '<br/>';
+    var_dump(preg_match('/[0-9]?$/','coucou1')); // [0-9]?$: termine par aucun ou un chiffre.
+    echo '<br/>';
+    var_dump(preg_match('/^[0-9]+.*[0-9]+$/','8coucou1546')); // ^[0-9]+.*[0-9]+$: commence par 1 ou plusieurs chiffres, fini par un ou plusieur chiffre et contient aucun 1 ou plusieur caractère, n'importe lequels (.*)
+    echo '<br/>';
+    var_dump(preg_match('/^[a-z]{1,3}$/','pi')); // ^[a-z]{1,3}$ : commence par une chaine de lettre minuscule de 1 à 3 caractères
+    echo '<br/>';
+    var_dump(preg_match('/^[a-z_-]+$/','t_e-s-t')); // ^[a-z_-]+$ : une chaine de lettre minuscule qui peut contenir des _ ou des -(le tiret doit être en dernière position dan sles crochet).
+    echo '<br/>';
+    var_dump(preg_replace( '/[0-9]/', 'X', 'Juillet 2018')); // remplace tous les chiffres compris entre 0 et 9 par X.
     
-
-
     ?>
 
 </body>
