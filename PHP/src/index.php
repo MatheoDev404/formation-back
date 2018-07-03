@@ -11,7 +11,7 @@
     <?php
 
         echo 'hello world';
-        echo '</br><strong> du text </strong>';
+        echo '<br/><strong> du text </strong>';
 
     ?>
 
@@ -39,7 +39,7 @@
         
         // concaténation avec le ' . ' 
         echo $a . $b;
-        echo '</br>' . $a . ' to the ' . $b;
+        echo '<br/>' . $a . ' to the ' . $b;
 
         $c = 2;
         // devient une string 'Un plus un font 2'
@@ -54,7 +54,7 @@
 
         $a = 'Bonjour';
         echo '$a le monde'; // simple quote, la variable n'est pas interprété.
-        echo "</br>$a le monde";// double quote, la variable est interprété.
+        echo "<br/>$a le monde";// double quote, la variable est interprété.
 
     ?>
 
@@ -90,23 +90,23 @@
     echo $a / $b;
     echo '<br> <strong>modulo :<br></strong>';
     echo $a % $b;
-    echo '</br>';
+    echo '<br/>';
 
     //Raccourcis d'écritures:
 
     $a += $b; // $a = $a + $b
-    echo '</br><strong> += équivaut à $a = $a + $b </strong></br>' . $a;
+    echo '<br/><strong> += équivaut à $a = $a + $b </strong><br/>' . $a;
 
     $a = 'bonjour';
     $b = ' le monde';
     $a .= $b; // $a = $a . $b
-    echo '</br><strong> +.= équivaut à $a = $a . $b </strong></br>' . $a;
+    echo '<br/><strong> +.= équivaut à $a = $a . $b </strong><br/>' . $a;
 
     $i = 0;
     $i++; // $i = $i + 1
-    echo '</br><strong> $i++ équivaut à $i = $i + 1 </strong></br>' . $i;
+    echo '<br/><strong> $i++ équivaut à $i = $i + 1 </strong><br/>' . $i;
     $i++; 
-    echo '</br>' . $i;
+    echo '<br/>' . $i;
 
     ?>
     
@@ -121,18 +121,18 @@
 
     $faux = false;
     if($faux){ // la condition n'es pas vérifiée, on entre pas dans la condition.
-        echo '</br>$faux est vrai</br>';
+        echo '<br/>$faux est vrai<br/>';
     }else {
-        echo '</br>$faux est faux</br>';
+        echo '<br/>$faux est faux<br/>';
     }
 
     if($faux){ // la condition n'es pas vérifiée, on entre pas dans la condition.
-        echo '</br>$faux est vrai</br>';
+        echo '<br/>$faux est vrai<br/>';
     }else if($vrai){
-        echo '</br>$faux est faux $vrai est vrai</br>';
+        echo '<br/>$faux est faux $vrai est vrai<br/>';
     }
     else {
-        echo '</br>$faux est faux</br>';
+        echo '<br/>$faux est faux<br/>';
     }
 
 
@@ -140,56 +140,56 @@
 
     
     if ($str == 'test'){ // test l'égalité
-        echo '</br>$str vaut "test"</br>';
+        echo '<br/>$str vaut "test"<br/>';
     }
     
     if ($str != 'bonjour'){ // test l'inégalité
-        echo '</br>$str ne vaut pas "bonjour"</br>';
+        echo '<br/>$str ne vaut pas "bonjour"<br/>';
     }
 
     $a = 10; // INT
     $b = '10'; // STRING
 
-    echo '</br>';
+    echo '<br/>';
     var_dump($a == $b); // vrai : même valeur
-    echo '</br>';
+    echo '<br/>';
     
-    echo '</br>';
+    echo '<br/>';
     var_dump($a != $b); // faux : même valeur
-    echo '</br>';
+    echo '<br/>';
 
-    echo '</br>';
+    echo '<br/>';
     var_dump($a === $b); // faux : même valeur, mais pas le même type;
-    echo '</br>';
+    echo '<br/>';
     
-    echo '</br>';
+    echo '<br/>';
     var_dump($a !== $b); // vrai : même valeur, mais pas le même type;
-    echo '</br>';
+    echo '<br/>';
     
     $a = 1;
     $b = 2;
     
-    echo '</br>';
+    echo '<br/>';
     var_dump($a > $b); // $a supérieur à $b (faux);
-    echo '</br>';
+    echo '<br/>';
     var_dump($a < $b); // $a inférieur à $b (vrai);
-    echo '</br>';
+    echo '<br/>';
     var_dump($a >= $b); // $a supérieur ou égale à $b (faux);
-    echo '</br>';
+    echo '<br/>';
     var_dump($a <= $b); // $a inférieur ou égale à $b (vrai);
-    echo '</br>';
+    echo '<br/>';
     
     
     if(isset($a)){ // Détermine si une variable est définie et est différente de NULL
         echo'$a existe et n\'est pas nul';
     }
-    echo '</br>';
+    echo '<br/>';
 
     if(!empty($a)){ // Détermine si une variable est définie et est différente de NULL
         echo'$a existe et n\'est pas vide';
     }
     // sont vide : null, 0 , 0.0, false, '0', '0.0', '', []. 
-    echo '</br>';
+    echo '<br/>';
     
     $a = 1;
     $b = 2;
@@ -199,31 +199,31 @@
     // ET logique : &&
     if ( $b > $a && $c > $b ) {
         echo '$b > $a ET $c > $b ';
-        echo '</br>';
+        echo '<br/>';
     }
 
     // OU logique : ||
     if ( $b > $a || $c > $b ) {
         echo '$b > $a OU $c > $b ';
-        echo '</br>';
+        echo '<br/>';
     }
 
     // OU exclusif : XOR
     if ( $b > $a XOR $c > $b ) {
         echo '$b > $a OU $c > $b MAIS PAS les 2 à la fois';
-        echo '</br>';
+        echo '<br/>';
     }
 
     // Priorité du ET sur le OU 
     if ( $b > $a || $c > $b && $c > $d) {
         echo '$b > $a OU ($c > $b ET $c > $d)';
-        echo '</br>';
+        echo '<br/>';
     }
 
     // le sparenthèses pour forcer la priorité sur le OU
     if ( ($b > $a || $c > $b) && $c > $d) {
         echo '($b > $a OU $c > $b) ET $c > $d';
-        echo '</br>';
+        echo '<br/>';
     }
 
     ?>
@@ -236,26 +236,26 @@
 
     switch ($couleur) {
         case 'rouge':
-            echo '</br>la couleur est rouge</br>';
+            echo '<br/>la couleur est rouge<br/>';
             break;
         case 'bleu':
-            echo '</br>la couleur est bleu</br>';
+            echo '<br/>la couleur est bleu<br/>';
             break;
         case 'jaune':
-            echo '</br>la couleur est jaune</br>';
+            echo '<br/>la couleur est jaune<br/>';
             break;
         default:// optionnel
-            echo '</br>la couleur est inconnue</br>';
+            echo '<br/>la couleur est inconnue<br/>';
     }
     
     if ($couleur === 'rouge') {
-        echo '</br>la couleur est rouge</br>';
+        echo '<br/>la couleur est rouge<br/>';
     }else if ($couleur === 'bleu') {
-        echo '</br>la couleur est bleu</br>';
+        echo '<br/>la couleur est bleu<br/>';
     }else if ($couleur === 'jaune') {
-        echo '</br>la couleur est jaune</br>';
+        echo '<br/>la couleur est jaune<br/>';
     }else{
-        echo '</br>la couleur est inconnue</br>';
+        echo '<br/>la couleur est inconnue<br/>';
     }
     ?>
 
@@ -417,7 +417,7 @@
     // $value est une variable créée dans la déclaration du foreach pour faire référence dans la boucle à  l'élément sur lequel on est en train de boucler. Pareil pour $key.
 
     foreach ($assoc as $key => $value) {
-        echo $key . ' : ' . $value . '</br>';
+        echo $key . ' : ' . $value . '<br/>';
     }
 
     // Ne modifie pas la valeur dans le tableau ($value est une copie).
@@ -451,7 +451,7 @@
         ];
 
     foreach ($users as $user) {
-        echo $user['prenom'] . ' ' . $user['nom'] . '</br>';
+        echo $user['prenom'] . ' ' . $user['nom'] . '<br/>';
     }
 
     // Affiche le prénom du 2ème user.
@@ -463,10 +463,76 @@
 
     <?php 
     echo strlen('toto'); // renvois 4
-    echo '</br>';
+    echo '<br/>';
     echo date('d/m/Y H:i:s'); //affiche date et heure actuelle au format français.
     
     
+    ?>
+
+    <h2>Fonctions utilisateur</h2>
+
+    <?php 
+
+    // déclaration d'une fonction
+    function separateur(){
+
+        echo '<hr/>';
+    }
+    
+    // appel de la fonction
+    separateur();
+
+    // déclaration d'une fonction
+    function bonjour($qui){
+        echo 'Bonjour ' . $qui . '<br/>';
+    }
+
+    // appel de la fonction
+    bonjour( 'Mathéo' );
+    $nom = 'Liam';
+    // $qui dans l'execution de la fonction vaut 'Liam'.
+    bonjour( $nom );
+
+    function test(){
+        // $nom fait partit du scope global et n'est pa saccessible dans la fonction.
+        // global : inclut une variable du scope global dans la fonction.
+        global $nom;
+        var_dump($nom);
+    }
+
+
+    // fonction à deux param, dont un optionnel (avec une valeur par defaut).
+    function hello($prenom, $nom = ''){
+        $str = "Bonjour $prenom";
+        if(!empty($nom)){
+            $str .= " $nom";
+        }
+        echo $str;
+    }
+
+    hello('liam');
+
+    function foisDix($nombre){
+        return $nombre * 10;
+    }
+
+    function refuseDix($nombre){
+        if($nombre == 10){
+            return 'ko';
+        }
+        return 'ok';
+    }
+
+    refuseDix(54);
+    refuseDix(10);
+
+    function calculPrix($prix,$tva = 20){
+        $prixTtc =  $prix * (1 + ($tva / 100));
+        return $prixTtc;
+    }
+    echo '<br/>';
+    echo calculPrix(100);
+
     ?>
       
 
