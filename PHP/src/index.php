@@ -345,14 +345,17 @@
             echo "</tr>";
 
         }
-
+        ?>
+    </table>
+    <table>
+        <?php 
         for ($j=0; $j <= 8 ; $j++) { 
             
-            echo "<tr style=\"background-color: green\">";
+            echo "<tr>";
             
             for ($i= 1; $i <= 8 ; $i++){  
                     $style =  (($i + $j) % 2 == 0)
-                            ? 'style="background-color:orange'
+                            ? 'style="background-color:orange"'
                             : ''
                     ;
                     echo "<td $style> $i - $j </td>";
@@ -361,11 +364,54 @@
             echo "</tr>";
 
         }
-
-        
         ?>
     </table>
 
+    <h2>Array</h2>
+
+    <?php 
+    
+    $tab = array(); // Crée un noueau tableau.
+    $tab = []; // notation courte.
+    
+    $tab = array('a', 2, true); // tableau à trois éléments.
+    $tab = ['a', 2, true]; // notation courte.
+
+    var_dump($tab);
+    $tab[] = 'b'; // ajout d'un élément au tableau.
+    var_dump($tab[0]);
+    
+    $tab[1] = 3; // remplace la valeur à la position 1.
+    
+    // Même tableau en spécifiant les clés.
+    $tab = [
+        0 => 'a',
+        1 => 2,
+        2 => true
+    ];
+    // Tableau associatif, avec des clés en chaîne de caractères.
+    $assoc = [
+        'a' => 'A',
+        'b' => 'B',
+        'c' => 'C'
+    ];
+    var_dump($assoc['a']);
+    // Ajout d'un élément en spécifiant la clé.
+    $assoc['d'] = 'D';
+    // Si on ajoute un élément sans précisé la clé, il prend l'indice 0.
+    $assoc[] = 'E';
+    
+    var_dump($assoc);
+    
+    $assoc[5] = 'F'; // Ajoute un élément a l'indice 5.
+    $assoc[] = 'G'; // Ajoute un élément à l'indice 6, le plus grand indice numérique +1.
+    
+    $test = 'test';
+    unset($test); // suprime une variable
+    unset($assoc['c']); // suprime l'élément du tableau à l'indice 'c'.
+    ?>
+
+    <h2>Bouc</h2>
  
       
 
