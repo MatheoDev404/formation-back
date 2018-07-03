@@ -433,11 +433,29 @@
             $assoc[$key] = 'Z';
         }
     }
+    ?>
 
+    <h2>Tableau multi-dimentionnel</h2>
 
-    
+    <?php 
 
+    $users = [
+            [
+                'prenom'    => 'Mathéo',
+                'nom'       => 'Stunault'
+            ],
+            [
+                'prenom'    => 'Liam',
+                'nom'       => 'tardieu'
+            ]
+        ];
 
+    foreach ($users as $user) {
+        echo $user['prenom'] . ' ' . $user['nom'] . '</br>';
+    }
+
+    // Affiche le prénom du 2ème user.
+    echo $users[1]['prenom'];
 
     ?>
  
