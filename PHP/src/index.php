@@ -589,14 +589,14 @@
     $variable   = 'bonjour' ;
     $name       = 'variable';
     echo $$name; // Affiche bonjour, équivaut à $variable ($name est remplacé par sa valeur).
-    
+    echo '<br/>';
 
     $tag1 = 1;
     $tag2 = 2;
     $tag3 = 3;
     
 
-    for ($i=0; $i <= 3 ; $i++) { 
+    for ($i=1; $i <= 3 ; $i++) { 
         echo ${'tag' . $i} . '<br/>'; // $tag1 au remier tour de boucle;
     }
     
@@ -607,21 +607,50 @@
     <?php 
     
     $array = ['nom' => 'mathéo'];
-    // echo "Bonjour $array['nom]"; // ne fonctionne pas, avec les éléments de tableaux.
-    echo "Bonjour ${array['nom]}";
+    // echo "Bonjour $array['nom']"; // ne fonctionne pas, avec les éléments de tableaux.
+    echo "Bonjour ${array['nom']}";
+    echo '<br/>';
+  
+    ?>
+     
+    <h2>Objets</h2>
+
+    <?php 
     
     
+    class Personne {
+
+        // Attributs de la class Personne (variables internes).
+        public $prenom;
+        public $nom;
+        
+        // Méthodes de la classe Personne (fonctions internes).
+        // Méthode automatiquement appelée à l'instanciation.
+        public function __construct($nom, $prenom){ 
+            $this->prenom = $prenom;
+            $this->nom = $nom;
+        }
+
+        public function seNommer(){
+            return $this->prenom . ' ' . $this->nom;
+        }
+    };
     
+    // instanciation de la classe Personne = création d'un objet à partir d'une classe.
+    //à l'instanciation, la méthode __construct() est appelée.
+    $moi = new Personne('Stunault', 'Mathéo');
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    echo $moi->nom;
+    echo '<br/>';
+    echo $moi->seNommer();
+    echo '<br/>';
+
+
+    // Crée un objet de la classe interne DateTime de PHP, qui représente date et heure courante.
+    $now = new DateTime();
+
+    echo $now->format('d/m/Y H:i:s');
+
     ?>
 
 </body>
