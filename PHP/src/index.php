@@ -411,7 +411,35 @@
     unset($assoc['c']); // suprime l'élément du tableau à l'indice 'c'.
     ?>
 
-    <h2>Bouc</h2>
+    <h2>Boucle FOREACH</h2>
+
+    <?php
+    // $value est une variable créée dans la déclaration du foreach pour faire référence dans la boucle à  l'élément sur lequel on est en train de boucler. Pareil pour $key.
+
+    foreach ($assoc as $key => $value) {
+        echo $key . ' : ' . $value . '</br>';
+    }
+
+    // Ne modifie pas la valeur dans le tableau ($value est une copie).
+    foreach ($assoc as $value) {
+        if($value == 'A'){
+            $value = 'Z';
+        }
+    }
+
+    // Modifie la valeur dans le tableau.
+    foreach ($assoc as $key => $value) {
+        if($value == 'A'){
+            $assoc[$key] = 'Z';
+        }
+    }
+
+
+    
+
+
+
+    ?>
  
       
 
