@@ -581,7 +581,26 @@
     // ajoute2(1); // FATAL ERROR , il faut forcement passer une variable
 
     ?>
-      
+     
+    <h2>Variables dynamiques</h2>
+
+    <?php 
+    
+    $variable   = 'bonjour' ;
+    $name       = 'variable';
+    echo $$name; // Affiche bonjour, équivaut à $variable ($name est remplacé par sa valeur).
+    
+
+    $tag1 = 1;
+    $tag2 = 2;
+    $tag3 = 3;
+    
+
+    for ($i=0; $i <= 3 ; $i++) { 
+        echo ${'tag' . $i} . '<br/>'; // $tag1 au remier tour de boucle;
+    }
+    
+    ?>
 
 </body>
 <script src="assets/js/main.js"></script>
