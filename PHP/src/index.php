@@ -459,6 +459,15 @@
 
     ?>
  
+    <h2>Fonctions prédéfinies</h2>
+
+    <?php 
+    echo strlen('toto'); // renvois 4
+    echo '</br>';
+    echo date('d/m/Y H:i:s'); //affiche date et heure actuelle au format français.
+    
+    
+    ?>
       
 
 </body>
