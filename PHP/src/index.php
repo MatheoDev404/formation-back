@@ -534,6 +534,53 @@
     echo calculPrix(100);
 
     ?>
+     
+    <h2>Références</h2>
+
+    <?php 
+
+    $a = 1;
+    $b = $a; // On affecte la valeur de $a à $b quand $a vaut 1
+    $a++; // Quand on modifie $a, ça ne modifie pas $b.
+
+    
+
+    $c = 1;
+    $d = &$c; // le & LIE $c à $d.
+
+    $c++; // Quand on modifie $c, $b prend en compte la modification.
+    var_dump($c, $d);
+    echo '<br/>';
+
+    $d++; // Quand on modifie $d, $c prend aussi en compte la modification.
+    var_dump($c, $d);
+    echo '<br/>';
+
+    function ajoute1($nb){
+        $nb++;
+    }
+
+    $nombre = 1;
+    ajoute1($nombre);
+
+    //$nombre vaut 1, car $nb est dans le scope de la fonction.
+    var_dump($nombre);
+    echo '<br/>';
+
+    function ajoute2(&$nb){
+        $nb += 2;
+    }
+    $nombre = 1;
+    ajoute2($nombre);
+
+    //$nombre vaut 12, car $nb est dans le scope de la fonction mais il est lié grace au & dans les parametres de la fonctionq.
+    var_dump($nombre);
+    echo '<br/>';
+
+    ajoute1(1);
+    // ajoute2(1); // FATAL ERROR , il faut forcement passer une variable
+
+    ?>
       
 
 </body>
