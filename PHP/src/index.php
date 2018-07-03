@@ -698,6 +698,28 @@
     var_dump(preg_replace( '/[0-9]/', 'X', 'Juillet 2018')); // remplace tous les chiffres compris entre 0 et 9 par X.
     
     ?>
+     
+    <h2>Syntaxe alternative</h2>
+
+    <?php 
+    // syntaxe généralement utilisée dans les templates.
+    // les accolades ouvrantes sont remplacées par deux points
+    // les accoaldes fermantes sont remplacées par end[nom de l'instruction] (ex: enfor, endwhile, ...).
+    if(10 < 20) : 
+        echo 'ici';
+    elseif( 20 < 30) :
+        echo 'oui';
+    else:
+        echo 'là';
+    endif
+
+
+
+
+
+
+
+    ?>
 
 </body>
 <script src="assets/js/main.js"></script>
