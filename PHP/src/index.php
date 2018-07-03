@@ -601,6 +601,28 @@
     }
     
     ?>
+     
+    <h2>Tableaux et double quotes</h2>
+
+    <?php 
+    
+    $array = ['nom' => 'mathéo'];
+    // echo "Bonjour $array['nom]"; // ne fonctionne pas, avec les éléments de tableaux.
+    echo "Bonjour ${array['nom]}";
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    ?>
 
 </body>
 <script src="assets/js/main.js"></script>
