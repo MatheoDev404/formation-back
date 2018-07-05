@@ -32,3 +32,8 @@
     </nav>
 
     <div class="container">
+        <?php 
+        
+        displayFlashMessage()
+        
+        ?>

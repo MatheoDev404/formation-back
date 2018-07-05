@@ -26,6 +26,8 @@ require __DIR__  . '/../layout/top.php';
         <tr>
             <th>ID</th>
             <th>Nom</th>
+            <th width="100px"></th>
+            <th width="100px"></th>
         </tr>
     </thead>
     <tbody>
@@ -36,12 +38,14 @@ require __DIR__  . '/../layout/top.php';
         <?php
         // Alternative :
         // foreach ($categories as $categorie) {
-        //     echo '<tr><td>' . $categorie['id'] . '</td><td>' . $categorie['nom'] . '</td></tr>';
+        //     echo '<tr><td>' . $categorie['id'] . '</td><td>' . $categorie['nom'] . '</td><td><a class="btn btn-primary" href="categorie-edit.php?id=' . $categorie['id'] . '"></a></td></tr>';
         // }
         ?> 
             <tr>
                 <td><?= $categorie['id']; ?></td>
                 <td><?= $categorie['nom']; ?></td>
+                <td><a class="btn btn-primary" href="categorie-edit.php?id=<?= $categorie['id']; ?>">Modifier</a></td>
+                <td><a class="btn btn-danger" href="categorie-delete.php?id=<?= $categorie['id']; ?>">Supprimer</a></td>
             </tr>
 
         <?php 
