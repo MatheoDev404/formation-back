@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -11,4 +11,9 @@
     <title>Boutique</title>
   </head>
   <body>
+    <nav class="navbar navbar-expand-mb navbar-dark bg-secondary">
+        <div class="container navbar_nav">
+            <a href="index.php" class="navbar-brand">Boutique</a>
+        </div>
+    </nav>
     <div class="container">
