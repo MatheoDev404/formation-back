@@ -18,7 +18,7 @@
             <div class="navbar-collapse">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a href="admin/categories.php" class="nav-link">Gestion catégories</a>
+                        <a href="<?= RACINE_WEB; ?>admin/categories.php" class="nav-link">Gestion catégories</a>
                     </li>
                 </ul>
             </div>
@@ -27,7 +27,7 @@
 
     <nav class="navbar navbar-expand-mb navbar-dark bg-secondary">
         <div class="container navbar_nav">
-            <a href="index.php" class="navbar-brand">Boutique</a>
+            <a href="<?= RACINE_WEB; ?>index.php" class="navbar-brand">Boutique</a>
         </div>
     </nav>
 
