@@ -11,9 +11,24 @@
     <title>Boutique</title>
   </head>
   <body>
+ 
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container navbar_nav">
+            <a href="#" class="navbar-brand">Admin</a>
+            <div class="navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="admin/categories.php" class="nav-link">Gestion catégories</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <nav class="navbar navbar-expand-mb navbar-dark bg-secondary">
         <div class="container navbar_nav">
             <a href="index.php" class="navbar-brand">Boutique</a>
         </div>
     </nav>
+
     <div class="container">
