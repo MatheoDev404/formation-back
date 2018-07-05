@@ -3,22 +3,23 @@
 
 require_once __DIR__  . '/../include/init.php';
 
-require __DIR__  . '/../layout/top.php';
 
 
 
-// lister les catégories dans un tbleau html
+// lister les catégories dans un tableau html
 
 // requetage ici:
 $stmt =  $pdo->query('SELECT * FROM categorie');
 $categories = $stmt->fetchAll();
 
+require __DIR__  . '/../layout/top.php';
 
 
 ?>
 
 <h1>Géstion catégories</h1>
 
+<p><a class="btn btn-primary" href="categorie-edit.php">Ajouter une catégorie</a></p>
 <!-- le tableau html ici  -->
 <table class="table table-dark">
     <thead>
@@ -46,7 +47,6 @@ $categories = $stmt->fetchAll();
         <?php 
         endforeach;
         ?>
-
     </tbody>
 </table>
 
