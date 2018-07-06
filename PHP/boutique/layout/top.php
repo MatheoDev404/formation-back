@@ -28,6 +28,11 @@
     <nav class="navbar navbar-expand-mb navbar-dark bg-secondary">
         <div class="container navbar_nav">
             <a href="<?= RACINE_WEB; ?>index.php" class="navbar-brand">Boutique</a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="<?= RACINE_WEB; ?>inscription.php" class="navbar-brand">Inscription</a>
+                </li>
+            </ul>
         </div>
     </nav>
 
