@@ -47,3 +47,14 @@ function displayFlashMessage(){
         unset($_SESSION['flashMessage']);
     }
 }
+
+// Verifie si un utilisateur est connecté, renvois true ou false
+function isUserConnected(){
+    return isset($_SESSION['utilisateur']);
+}
+
+function getUserFullName(){
+    if(isUserConnected()){
+        return $_SESSION['utilisateur']['prenom'] . ' ' . $_SESSION['utilisateur']['nom'];
+    }
+}

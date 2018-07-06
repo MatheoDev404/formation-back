@@ -25,14 +25,42 @@
         </div>
     </nav>
 
-    <nav class="navbar navbar-expand-mb navbar-dark bg-secondary">
-        <div class="container navbar_nav">
+    <nav class="navbar navbar-expand-md navbar-dark bg-secondary">
+        <div class="container navbar-nav">
             <a href="<?= RACINE_WEB; ?>index.php" class="navbar-brand">Boutique</a>
+
+            <?php 
+            if(isUserConnected()) : 
+            ?>
+
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="<?= RACINE_WEB; ?>inscription.php" class="navbar-brand">Inscription</a>
+                    <a href="#" class="nav-link"><?= getUserFullName(); ?></a>
+                </li>
+                <li class="nav-item">
+                    <a href="<?= RACINE_WEB; ?>deconnexion.php" class="nav-link">Déconnexion</a>
                 </li>
             </ul>
+
+            <?php 
+            else :
+            ?>
+
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="<?= RACINE_WEB; ?>inscription.php" class="nav-link">Inscription</a>
+                </li>
+                <li class="nav-item">
+                    <a href="<?= RACINE_WEB; ?>connexion.php" class="nav-link">Connexion</a>
+                </li>
+            </ul>
+           
+
+
+            <?php 
+            endif;
+            ?>
+
         </div>
     </nav>
 
