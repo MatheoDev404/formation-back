@@ -3,9 +3,7 @@
 
 require_once __DIR__  . '/../include/init.php';
 
-
 adminSecurity();
-
 
 // lister les catégories dans un tableau html
 
