@@ -76,3 +76,8 @@ function adminSecurity(){
         die;
     }
 }
+
+// formatage du prix pour l'affichage
+function prixFr($prix){
+    return number_format($prix, 2, ',', ' ') . ' €';
+}

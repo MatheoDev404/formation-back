@@ -2,6 +2,8 @@
 
 require_once __DIR__  . '/../include/init.php';
 
+adminSecurity();
+
 $errors = [];
 $nom = '';
 
