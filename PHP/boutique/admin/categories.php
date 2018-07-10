@@ -3,7 +3,8 @@
 
 require_once __DIR__  . '/../include/init.php';
 
-
+//http://localhost/matheo_stunault/formation-back/PHP/boutique/admin/categories.php
+adminSecurity();
 
 
 // lister les catégories dans un tableau html

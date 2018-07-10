@@ -58,3 +58,21 @@ function getUserFullName(){
         return $_SESSION['utilisateur']['prenom'] . ' ' . $_SESSION['utilisateur']['nom'];
     }
 }
+
+// verifie si on a un utilisateru connecté qui à le rôle admin
+function isUserAdmin(){
+    return isUserConnected() && $_SESSION['utilisateur']['role'] == 'admin'; 
+}
+
+// On bloque l'accès aux pages d'administration via l'url et on le redirige
+function adminSecurity(){
+    if(!isUserAdmin()){
+        if(!isUserConnected()){
+            header('location: ' . RACINE_WEB . 'connexion.php');
+        } else {
+            header('HTTP/1.1 403 Forbidden');
+            echo "Vous n'avez pas le droit d'accéder à cette page.";
+        }
+        die;
+    }
+}

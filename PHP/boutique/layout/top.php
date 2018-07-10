@@ -11,7 +11,9 @@
     <title>Boutique</title>
   </head>
   <body>
- 
+    <?php 
+    if(isUserAdmin()) :
+    ?>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container navbar_nav">
             <a href="#" class="navbar-brand">Admin</a>
@@ -20,11 +22,16 @@
                     <li class="nav-item">
                         <a href="<?= RACINE_WEB; ?>admin/categories.php" class="nav-link">Gestion catégories</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="<?= RACINE_WEB; ?>admin/produits.php" class="nav-link">Gestion produits</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-
+    <?php 
+    endif;
+    ?>
     <nav class="navbar navbar-expand-md navbar-dark bg-secondary">
         <div class="container navbar-nav">
             <a href="<?= RACINE_WEB; ?>index.php" class="navbar-brand">Boutique</a>
