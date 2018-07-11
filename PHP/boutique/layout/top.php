@@ -36,11 +36,17 @@
         <div class="container navbar-nav">
             <a href="<?= RACINE_WEB; ?>index.php" class="navbar-brand">Boutique</a>
 
-            <?php 
-            if(isUserConnected()) : 
-            ?>
+                <?php
+                
+                include __DIR__ . '/menu-categorie.php';
+                
+                ?>
+
 
             <ul class="navbar-nav">
+                <?php 
+                if(isUserConnected()) : 
+                ?>
                 <li class="nav-item">
                     <a href="#" class="nav-link"><?= getUserFullName(); ?></a>
                 </li>
