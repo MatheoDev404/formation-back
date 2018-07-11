@@ -21,12 +21,12 @@ require __DIR__  . '/layout/top.php';
 
 ?>
 
-<h1><?= $categorie; ?></h1>
+<h1 style="text-align:center;margin:40px;"><?= $categorie; ?></h1>
 
 
 
 
-<div class="group-item d-flex justify-content-between flex-wrap">
+<div class="group-item d-flex justify-content-around flex-wrap">
 
     <?php
     foreach ($produits as $produit) :
@@ -36,20 +36,15 @@ require __DIR__  . '/layout/top.php';
                     : PHOTO_DEFAULT
                 ;
     ?>
-        <div mainheight="400px" class="col-5">
-            <a href="produit.php?id=<?= $produit['id'] ?>" class="d-flex list-group-item list-group-item-action">
-                <div class="col-7  justify-content-between flex-wrap">
-
-
+        <div height="300px;" class="col-5 list-group-item">
+            <a href="produit.php?id=<?= $produit['id'] ?>" class="d-flex list-group-item-action">
+                <div class="col-7 justify-content-between flex-wrap">
                     <h5 class="col-12 md-1"><?= $produit['nom']; ?></h5>
                     <span class="col-12 text-muted"><small>ref : <?= $produit['reference']; ?></small></span>
                     <p class="col-12 "><?= prixFr($produit['prix']); ?></p>
-                    
-
                 </div>
                 <div class="col-2">
                     <img src="<?= $imgUrl ?>" height="100px">
-                
                 </div>
             </a>
         </div>
