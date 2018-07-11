@@ -1,153 +1,251 @@
 <?php
-require_once __DIR__  . '/../include/init.php';
+/*
+Faire le formulaire d'édition de produit
+- nom : champ text - obligatoire
+- description : champ textarea - obligatoire
+- référence : champ text - obligatoire, 50 caractères max., unique
+- prix : champ text - obligatoire
+- catégorie : liste déroulante - obligatoire
+Si le formulaire est correctement rempli : INSERT en bdd
+et redirection vers la page de liste avec message de confirmation
+sinon messages d'erreurs et champs pré-remplis avec les valeurs saisies
+
+Adapter la page pour la modification
+- si on reçoit un id dans l'URL sans retour de POST, pré-remplissage
+du formulaire à partir de la bdd
+- enregistrement avec UPDATE au lieu d'INSERT
+- adapter le contrôle de l'unicité de la référence pour exclure
+la référence du produit que l'on modifie de la requête
+*/
+require_once __DIR__ . '/../include/init.php';
 adminSecurity();
-$errors = [];
-$nom = $description = $reference = $prix =    '';
-$categorie_id = 0;
-// requetage ici:
-$stmt =  $pdo->query(
-    'SELECT * FROM categorie ORDER BY nom'
-);
-$categories = $stmt->fetchAll();
+
+$nom = $description = $reference = $prix = $categorie = $photoActuelle = '';
+
 if (!empty($_POST)) {
-    // nettoyage (cf: inclue/fonctions.php).
+//    dump($_FILES);die;
+    
     sanitizePost();
-    // extract renvois un tableau avec l'attribut name du champ en clé valeur.
     extract($_POST);
-    dump($_POST);
-    // test de la saisie du champ text nom
-    if (empty($_POST['nom'])){
-        $errors[] = 'Le nom est obligatoire.';
-    }elseif (strlen($_POST['nom']) > 255) {
-        $errors[] = 'Le nom est trop long, 1 à 255 caractères.';
+    
+    if (empty($_POST['nom'])) {
+        $errors[] = 'Le nom est obligatoire';
     }
-    // test de la saisie du champ text description
-    if (empty($_POST['description'])){
-        $errors[] = 'La déscription est obligatoire.';
+    
+    if (empty($_POST['description'])) {
+        $errors[] = 'La description est obligatoire';
     }
-    // test de la saisie du champ text reference
-    if (empty($_POST['reference'])){
-        $errors[] = 'La reference est obligatoire.';
-    }elseif(strlen($_POST['reference']) > 50){
-        $errors[] = 'Le nom est trop long, 1 à 50 caractères.';
-    }else{
-        $query = "SELECT * FROM produit WHERE reference = :reference";
-        $stmt =  $pdo->prepare( $query );
-        $stmt->execute([':reference' => $reference]);
-        $produits = $stmt->fetchAll();
-        foreach ($produits as $produit) {
-            if (($produit['reference'] == $reference) && ($produit['id'] != $_GET['id'])) {
-                $errors[] = 'Cet Réference est déjà utilisée.'; 
-            }  
+    
+    if (empty($_POST['reference'])) {
+        $errors[] = 'La référence est obligatoire';
+    }elseif (strlen($_POST['reference']) > 50) {
+        $errors[] = 'La référence ne doit pas faire plus de 50 caractères';
+    } else {
+        $query = 'SELECT count(*) FROM produit WHERE reference = :reference';
+        
+        if (!empty($_GET['id'])) {
+            $query .= ' AND id !=' . (int)$_GET['id'];
+        }
+        
+        $stmt = $pdo->prepare($query);
+        $stmt->bindValue(':reference', $_POST['reference']);
+        $stmt->execute();
+        $nb = $stmt->fetchColumn();
+        
+        if ($nb != 0) {
+            $errors[] = 'Il existe déjà un produit avec cette référence';
         }
     }
-    // test de la saisie du champ text prix
-    if (empty($_POST['prix'])){
-        $errors[] = 'Le prix est obligatoire.';
-    }elseif(!is_numeric($prix)){
-        $errors[] = 'Le prix doit etre un chiffre.';
+    
+    if (empty($_POST['prix'])) {
+        $errors[] = 'Le prix est obligatoire';
     }
-    // test de la saisie du champ text prix
-    if ($categorie_id == 0){
-        $errors[] = 'La catégorie est obligatoire.';
+    
+    if (empty($_POST['categorie'])) {
+        $errors[] = 'La catégorie est obligatoire';
     }
-    // si le tableau qui contient mes erreures est vide, alors je met à jour ma base de donnée
+    
+     // si une image a été téléchargée
+    if (!empty($_FILES['photo']['tmp_name'])) {
+        // $_FILES['photo']['size'] : le poids du fichier en octets
+        if ($_FILES['photo']['size'] > 1000000) {
+            $errors[] = 'La photo ne doit pas faire plus de 1 Mo';
+        }
+        
+        $allowedMimeTypes = [
+            'image/jpeg',
+            'image/gif',
+            'image/png'
+        ];
+        
+        if (!in_array($_FILES['photo']['type'], $allowedMimeTypes)) {
+            $errors[] = 'La photo doit être une image GIF, JPG ou PNG';
+        }
+    }
+    
     if (empty($errors)) {
-        if(isset($_GET['id'])){ // Modification
-            $query = 'UPDATE produit SET nom = :nom, description = :description, reference = :reference, prix = :prix, categorie_id = :categorie_id WHERE id = :id';
-            $stmt = $pdo->prepare($query);
-            $stmt->execute([
-                ':nom' => $nom,
-                ':description' => $description,
-                ':reference' => $reference,
-                ':prix' => $prix,
-                ':categorie_id' => $categorie_id,
-                ':id' => $_GET['id']
-            ]);
-             // enregistrement du message dans $_SESSION.
-             setFlashMessage('le produit a bien été modifiée.');
-        }else { // création
-            // insertion en bdd
-            $query = 'INSERT INTO produit(nom, description, reference, prix, categorie_id)  VALUES (:nom, :description, :reference, :prix, :categorie_id)';
-            $stmt = $pdo->prepare($query);
-            $stmt->execute([
-                ':nom' => $nom,
-                ':description' => $description,
-                ':reference' => $reference,
-                ':prix' => $prix,
-                ':categorie_id' => $categorie_id,
-                ]);  
-            // enregistrement du message dans $_SESSION.
-            setFlashMessage('le produit a bien été enregistrée.');
+        if (!empty($_FILES['photo']['tmp_name'])) {
+            $name = $_FILES['photo']['name'];
+            // on retrouve l'extension du fichier original à partir de son nom
+            $extension = substr($name, strrpos($name, '.'));
+            // le nom que va avoir le fichier dans le répertoire photo
+            $nomPhoto = $_POST['reference'] . $extension;
+            
+            // En modification, si le produit avait déjà une photo, on la supprime.
+            if(!empty($photoActuelle)){
+                unlink(PHOTO_DIR . $photoActuelle);
+            }
+
+            // enregistrement du fichier dans le répertoire photo
+            move_uploaded_file(
+                    $_FILES['photo']['tmp_name'], 
+                    PHOTO_DIR . $nomPhoto);
+        } else {
+            $nomPhoto = $photoActuelle;
         }
-        // Redirection
-        header("location: produits.php");
-        die; // Termine l'execution du script
-    }
-}elseif (isset($_GET['id'])){ // SI j'ai un id dans l'url, alors je recupère les infos de la catégorie correspondante.
-    // requete en se servant de l'id renvoyée en $_GET
-    $query = 'SELECT * FROM produit WHERE id=' . (int)$_GET['id'];
+        
+        if (!empty($_GET['id'])) {
+            $query = <<<SQL
+UPDATE produit SET
+    nom = :nom,
+    description = :description,
+    reference = :reference,
+    prix = :prix,
+    categorie_id = :categorie_id,
+    photo = $photoActuelle,
+WHERE id = :id
+SQL;
+            $stmt = $pdo->prepare($query);
+            $stmt->execute([
+                ':nom' => $_POST['nom'],
+                ':description' => $_POST['description'],
+                ':reference' => $_POST['reference'],
+                ':prix' => $_POST['prix'],
+                ':categorie_id' => $_POST['categorie'],
+                ':photo' => $nomPhoto,
+                ':id' => $_GET['id'],
+            ]);
+        } else {
+            $query = <<<SQL
+INSERT INTO produit (
+    nom,
+    description,
+    reference,
+    prix,
+    categorie_id,
+    photo
+) VALUES (
+    :nom,
+    :description,
+    :reference,
+    :prix,
+    :categorie_id,
+    :photo  
+)
+SQL;
+            $stmt = $pdo->prepare($query);
+            $stmt->execute([
+                ':nom' => $_POST['nom'],
+                ':description' => $_POST['description'],
+                ':reference' => $_POST['reference'],
+                ':prix' => $_POST['prix'],
+                ':categorie_id' => $_POST['categorie'],
+                ':photo' => $nomPhoto
+            ]);
+        }
+        
+        setFlashMessage('Le produit est enregistré');
+        header('Location: produits.php');
+        die;
+   }
+} elseif (!empty($_GET['id'])) {
+    $query = 'SELECT * FROM produit WHERE id = ' . (int)$_GET['id'];
     $stmt = $pdo->query($query);
-    // fetch() du resultat de la requete
     $produit = $stmt->fetch();
-    // on rempli la variable $nom, pour préremplir les champs.
-    $nom = $produit['nom'];
-    $description = $produit['description'];
-    $reference = $produit['reference'];
-    $prix = $produit['prix'];
-    $categorie_id = $produit['categorie_id'];
+    extract($produit);
+    $categorie = $produit['categorie_id'];
+    $photoActuelle = $produit['photo'];
 }
-require __DIR__  . '/../layout/top.php';
-if(!empty($errors)) :
+
+// pour construire le SELECT des catégories
+$query = 'SELECT * FROM categorie ORDER BY nom';
+$stmt = $pdo->query($query);
+$categories = $stmt->fetchAll();
+
+require __DIR__ . '/../layout/top.php';
+
+if (!empty($errors)) :
 ?>
-<div class="alert alert-danger">
-    <h5 class="alert-heading">Le formulaire contient des erreurs</h5>
-    <?= implode('<br/>', $errors); // implode() : transforme un tableau en string, en separant chaques éléments par un séparateur. ?>
-</div>
-<?php 
+    <div class="alert alert-danger">
+        <h5 class="alert-heading">Le formulaire contient des erreurs</h5>
+        <?= implode('<br>', $errors); // transforme un tableau en chaîne de caractères ?>
+    </div>
+<?php
 endif;
 ?>
-<h1>Edition Produit</h1>
-<form action="" method="post">
+<h1>Edition produit</h1>
+
+<!-- 
+L'attribut enctype est obligatoire pour un formulaire
+qui contient un téléchargement de fichier
+-->
+<form method="post" enctype="multipart/form-data">
     <div class="form-group">
-        <label for="nom">Nom</label>
-        <input type="text" name="nom" class="form-control" value="<?= $nom ?>" />
+        <label>Nom</label>
+        <input type="text" name="nom"
+            class="form-control" value="<?= $nom; ?>">
     </div>
     <div class="form-group">
-        <label for="description">Déscription</label>
-        <textarea class="form-control" name="description" id="description"><?= $description ?></textarea>
+        <label>Description</label>
+        <textarea name="description"
+            class="form-control"><?= $description; ?></textarea>
     </div>
     <div class="form-group">
-        <label for="reference">Réference</label>
-        <input type="text" name="reference" class="form-control" value="<?= $reference ?>" />
+        <label>Référence</label>
+        <input type="text" name="reference"
+            class="form-control" value="<?= $reference; ?>">
     </div>
     <div class="form-group">
-        <label for="prix">Prix</label>
-        <input type="text" name="prix" class="form-control" value="<?= $prix ?>" />
+        <label>Prix</label>
+        <input type="text" name="prix"
+            class="form-control" value="<?= $prix; ?>">
     </div>
     <div class="form-group">
-        <label for="categorie">Categorie</label>
-        <select class="form-control" name="categorie_id" id="categorie">
-            <option value="0">Choisissez une catégorie</option>
-            <?php foreach($categories as $categorie) :?>
-                <option 
-                    <?php 
-                       if ($categorie_id ==  $categorie['id']){
-                           echo 'selected';
-                        }
-                    ?>
-                    value="<?=  $categorie['id'] ?>"
-                >
-                    <?= $categorie['nom'] ?>
-                </option>
-            <?php endforeach;?>
+        <label>Catégorie</label>
+        <select name="categorie" class="form-control">
+            <option value=""></option>
+            <?php
+            foreach ($categories as $cat) :
+                $selected = ($cat['id'] == $categorie)
+                    ? 'selected'
+                    : ''
+                ;
+            ?>
+                <option value="<?= $cat['id']; ?>" <?= $selected; ?>><?= $cat['nom']; ?></option>
+            <?php
+            endforeach;
+            ?>
         </select>
     </div>
+    <div class="form-group">
+        <label>Photo</label><br>
+        <input type="file" name="photo"> 
+    </div>
+    <?php 
+    if(!empty($photoActuelle)):
+        echo '<p><img src="' . PHOTO_WEB . $photoActuelle . '" height="150px"/></p>';
+    endif;
+    ?>
+    <input type="hidden" name="photoActuelle" value="<?= $photoActuelle ?>">
     <div class="form-btn-group text-right">
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
-        <a href="produits.php" class="btn btn-secondary">Retour</a>
+        <button type="submit" class="btn btn-primary">
+            Enregistrer
+        </button>
+        <a class="btn btn-secondary" href="produits.php">
+            Retour
+        </a>
     </div>
 </form>
 <?php
-require __DIR__  . '/../layout/bottom.php';
+require __DIR__ . '/../layout/bottom.php';
 ?>
