@@ -112,7 +112,7 @@ UPDATE produit SET
     reference = :reference,
     prix = :prix,
     categorie_id = :categorie_id,
-    photo = :photo,
+    photo = :photo
 WHERE id = :id
 SQL;
             $stmt = $pdo->prepare($query);

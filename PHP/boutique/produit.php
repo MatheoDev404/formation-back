@@ -22,21 +22,31 @@ $imgUrl = ($produit['photo'] != '')
                 ;
 ?>
 
-
-
-<div class="d-flex list-group-item list-group-item-action">
+<div class="d-flex list-group-item list-group-item-action flex-wrap">
     <div class="col-4 flex-wrap">
         <img class="col" src="<?= $imgUrl ?>" >
         <p class="col-12"><?= prixFr($produit['prix']); ?></p>
-    
+
+        <form action="" method="post">
+            <div class="form-group d-flex">
+                <label class="col-4"for="quantite">Quantité :</label>
+                <select class="col form-control" name="quantite" id="quantite">
+                    <?php
+                    for ($i=0; $i <= 10; $i++) :
+                        ?>
+                    <option class="list-item" value="<?= $i ?>"><?= $i ?></option>
+                    <?php  
+                    endfor;
+                    ?>
+                </select>
+            </div>
+            <button class="btn btn-success col-12" href="#">Ajouter au panier</button>
+        </form>
     </div>
     <div class="col-8 d-flex justify-content-between flex-wrap">
-        <h5 class="col-12 md-1"><?= $produit['nom']; ?></h5>
+        <h2 class="col-12 md-1"><?= $produit['nom']; ?></h2>
         <p class="col-12"><?= nl2br($produit['description']); ?></p>
         <span class="col-12 text-muted"><small>ref : <?= $produit['reference']; ?></small></span>
-        
-        <a class="col-12" href="#">Ajouter au panier</a>
-
     </div>
 </div>
 
