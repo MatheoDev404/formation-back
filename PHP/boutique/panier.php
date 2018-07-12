@@ -2,10 +2,59 @@
 
 require_once __DIR__ . '/include/init.php';
 
-$totalPanier = 0;
 
-dump($_POST);
+// dump($_SESSION['panier']);
 // $_SESSION['panier'] = [];
+
+if(isset($_POST['commander'])){
+    
+    $query=<<<SQL
+INSERT INTO commande(
+    utilisateur_id,
+    montant_total
+) VALUES (
+    :utilisateur_id,
+    :montant_total
+)
+SQL;
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([
+        ':utilisateur_id' => $_SESSION['utilisateur']['id'],
+        ':montant_total' => totalPanier()
+    ]);
+    
+    // Récuperration d l'id de la commande que l'on vient d'inserer.
+    $commandeId = $pdo->lastInsertId();
+
+    $query =<<<SQL
+INSERT INTO detail_commande(
+    commande_id,
+    produit_id,
+    prix,
+    quantite
+) VALUES (
+    :commande_id,
+    :produit_id,
+    :prix,
+    :quantite
+)
+SQL;
+    $stmt = $pdo->prepare($query);
+
+    foreach ($_SESSION['panier'] as $produitId => $produit) {
+        $stmt->execute([
+            ':commande_id' => $commandeId ,
+            ':produit_id' => $produitId,
+            ':prix' => $produit['prix'],
+            ':quantite' => $produit['quantite']
+        ]);
+    }
+
+    $_SESSION['panier'] = [];
+
+    setFlashMessage('La commande a bien été enregistrée.');
+ 
+}
 
 if(isset($_POST['modifierQuantite'])){
     modifierQuantitePanier($_POST['produitId'],$_POST['quantite'] );
@@ -65,10 +114,29 @@ if(!empty($_SESSION['panier'])) :
         </tr>
     </tbody>
 </table>
+<?php
+if(!isUserConnected()):
+?>
 
-<div class="text-right">
-    <button type="button" class="btn btn-primary">Payer</button>
+<div class="alert alert-info">
+    Vous devez vous connecter ou vous inscrire pour valider la commande.
 </div>
+
+<?php
+else:
+?>
+<form action="" method="post">
+    <p class="text-right">
+        <button type="submit" name="commander" class="btn btn-primary">Valider la commande</button>
+    </p>
+</form>
+
+
+<?php 
+endif;
+?>
+
+
 
 <?php
 else:

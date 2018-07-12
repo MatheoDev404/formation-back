@@ -109,11 +109,11 @@ function totalPanier(){
         }
     }
     
-    return prixFr($totalPanier);
+    return $totalPanier;
 }
 
 function modifierQuantitePanier($produitId, $quantite){
-    if(isset($_SESSION['panier'][$produitId]){
+    if(isset($_SESSION['panier'][$produitId])){
 
         if(!empty($quantite)){
             $_SESSION['panier'][$produitId]['quantite'] = $quantite;

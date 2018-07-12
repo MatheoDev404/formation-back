@@ -25,6 +25,9 @@
                     <li class="nav-item">
                         <a href="<?= RACINE_WEB; ?>admin/produits.php" class="nav-link">Gestion produits</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="<?= RACINE_WEB; ?>admin/commandes.php" class="nav-link">Gestion commandes</a>
+                    </li>
                 </ul>
             </div>
         </div>
