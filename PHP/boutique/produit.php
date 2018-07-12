@@ -14,6 +14,17 @@ $stmt->execute();
 $produit = $stmt->fetch();
 
 
+if(!empty($_POST)){
+    ajoutPanier($produit, $_POST['quantite']);
+    // dump($_SESSION['panier']);
+    setFlashMessage('Le produit a bien été ajouté au panier.');
+    // On redirige vers la pas sur laquelle on se trouve 
+    // Permet de ne pas renvoyer les informations de formulaire
+    // à l'actualisation de la page.
+    header('location: produit.php?id='. $_GET['id']);
+    die;
+}
+
 require __DIR__  . '/layout/top.php';
 
 $imgUrl = ($produit['photo'] != '')
@@ -32,7 +43,7 @@ $imgUrl = ($produit['photo'] != '')
                 <label class="col-4"for="quantite">Quantité :</label>
                 <select class="col form-control" name="quantite" id="quantite">
                     <?php
-                    for ($i=0; $i <= 10; $i++) :
+                    for ($i=1; $i <= 10; $i++) :
                         ?>
                     <option class="list-item" value="<?= $i ?>"><?= $i ?></option>
                     <?php  

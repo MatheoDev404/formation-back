@@ -73,7 +73,9 @@
             <?php 
             endif;
             ?>
-
+            <li class="nav-item">
+                    <a href="<?= RACINE_WEB; ?>panier.php" class="nav-link">Panier</a>
+                </li>
         </div>
     </nav>
 

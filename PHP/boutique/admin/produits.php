@@ -19,6 +19,7 @@ $produits = $stmt->fetchAll();
 
 // dump($produits);
 
+
 require __DIR__  . '/../layout/top.php';
 
 

@@ -81,3 +81,44 @@ function adminSecurity(){
 function prixFr($prix){
     return number_format($prix, 2, ',', ' ') . ' €';
 }
+
+// ajout d'un produit au panier
+function ajoutPanier(array $produit, $quantite){
+    // initialisation du panier si se n'est pas deja fait
+    if (!isset($_SESSION['panier'])) {
+        $_SESSION['panier'] = [];
+    }
+    //si le produit n'est pas déjà dans le panier
+    if (!isset($_SESSION['panier'][$produit['id']])) {
+        $_SESSION['panier'][$produit['id']] = [
+            'nom' => $produit['nom'],
+            'prix' => $produit['prix'],
+            'quantite' => $quantite,
+        ];
+    }else{
+        // Si le produit est déjà dans le panier, on met à jour la quantite
+        $_SESSION['panier'][$produit['id']]['quantite'] += $quantite;
+    }
+}
+// fonction qui calcule le montant total du panier
+function totalPanier(){
+    $totalPanier = 0;
+    if (isset($_SESSION['panier'])) {
+        foreach ($_SESSION['panier'] as $produit) {
+            $totalPanier += $produit['quantite']*$produit['prix'];
+        }
+    }
+    
+    return prixFr($totalPanier);
+}
+
+function modifierQuantitePanier($produitId, $quantite){
+    if(isset($_SESSION['panier'][$produitId]){
+
+        if(!empty($quantite)){
+            $_SESSION['panier'][$produitId]['quantite'] = $quantite;
+        }else{
+            unset($_SESSION['panier'][$produitId]);
+        }
+    }
+}
