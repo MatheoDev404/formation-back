@@ -82,6 +82,11 @@ function prixFr($prix){
     return number_format($prix, 2, ',', ' ') . ' €';
 }
 
+// formatage de la date pour l'affichage
+function datetimeFr($datetimeSql){
+    return date('d/m/Y H:i',strtotime($datetimeSql));
+}
+
 // ajout d'un produit au panier
 function ajoutPanier(array $produit, $quantite){
     // initialisation du panier si se n'est pas deja fait
