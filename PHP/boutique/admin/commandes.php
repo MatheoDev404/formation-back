@@ -15,7 +15,7 @@ if(isset($_POST['statutCommande'])){
     ]);
 
     setFlashMessage('Le statut est modifié');
-    header('Location: commandes.php');
+    header('Location: commandes.php'); 
     die;
 }
 
