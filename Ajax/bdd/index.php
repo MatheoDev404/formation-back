@@ -56,7 +56,7 @@ $utilisateurs = $stmt->fetchAll();
                                     // on met le contenu de la réponse dans la div#detail
                                     $('#detail').html(response);
                                 }
-                    );
+                        );
                     } else {
                         // si on a choisi l'option vide
                         // on vide la div#detail
