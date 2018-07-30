@@ -30,12 +30,12 @@ $siamois->ronronner();
 echo '<br>';
 
 $higgins = new MaitreChien();
-$zeus = new Chien()
+$zeus = new Chien();
 
-$higgins ->setChien($zeus);
+$higgins->setChien($zeus);
 //$higgins-> getChien() retounre un objet instance de la classe chien donc on 
 //peut appeler dessus la methode crier de la classe chien
-$higgins ->getChien()->crier();
+$higgins->getChien()->crier();
 echo '<br>';
 echo get_class($higgins->getChien()); //Chien
 
