@@ -1,33 +1,36 @@
 <?php
 
-abstract class Animal
-{
-    /**
-     * 
-     *
-     * @var string
-     */
-    protected $escpace = 'indeterminée';
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-    /**
-     * Un attribut ou une méthode 
-     * declaré private n'est 
-     * pas accessible dans les classes filles.
-     *
-     * @var string
-     */
-    private $prive = 'variable propre à animal';
+/**
+ * Description of Animal
+ *
+ * @author Etudiant
+ */
+abstract class Animal {
+    protected $espece = 'indéterminée';
 
-    public function identifier()
-    {
-        return 'je suis un animal';
+    private $prive= 'attribut propre à Animal';
+
+    public function identifier(){
+        return 'Je suis un animal';
     }
 
-    /**
-     * Get the value of prive
-     */ 
     public function getPrive()
     {
         return $this->prive;
     }
+
+    /* méthode abstraite
+     * 
+     * Toutes les classes qui héritent d'Animal doivent implémenter cette méthode
+     * Une classe qui contient au moins une méthode abstraite doit être déclarée abstraite
+     */
+    abstract public function crier();
+
+
 }
