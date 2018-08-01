@@ -1,18 +1,24 @@
 <?php
+require_once 'Chien.php';
 
-class MaitreChien {
-
+class MaitreChien
+{
     /**
+     *
      * @var Chien
      */
     private $chien;
-
-    public function getChien(): Chien {
+    
+    public function getChien(): Chien
+    {
         return $this->chien;
     }
-    
-    public function setChien(Chien $chien) {
+
+    public function setChien(Chien $chien)
+    {
         $this->chien = $chien;
         return $this;
     }
+
+
 }

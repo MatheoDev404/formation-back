@@ -1,16 +1,22 @@
 <?php
 require 'Person.php';
 
+// Fatal error : le constructeur de la classe
+// contient 3 paramètres obligatoires
+//$person = new Person();
 echo '<pre>';
-// il faut placer des parametre, si la methode __construc en attend.
-$person = new Person('Mathéo', 'Stunault', 22);
+// Pour pouvoir instancier la classe il faut passer
+// des valeurs pour les paramètres obligatoires attendus
+// par la méthode __construct()
+$person = new Person('Julien', 'Anest', 41);
 var_dump($person);
-
-$person2 = new Person('Mathéo', 'Stunault', 22, ['niquer des mamans','fromage']);
+// comme pour toute fonction ou méthode, quand un paramètre
+// du constructeur a une valeur par défaut, on peut choisir
+// d'y passer une valeur ou pas
+$person2 = new Person('Liam', 'Tardieu', 35, ['PHP', 'Laravel']);
 var_dump($person2);
-
 echo '</pre>';
 
-// Si la class possède une methode __toString(), elle est appelée, 
-// sinon fatal error
+// si la classe possède une méthode __toString(), elle est appelée
+// sinon Fatal error
 echo $person;

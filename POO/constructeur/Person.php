@@ -1,17 +1,17 @@
 <?php
-
-class Person {
-        
-    private $firstname;
-
+class Person
+{
     private $lastname;
-
+    
+    private $firstname;
+    
     private $age;
-
+    
     private $hobbies = [];
-
+    
     /**
-     * Le constructeur est appelé automatiquement à l'instenciation de la class
+     * Le constructeur est appelé automatiquement
+     * à l'instanciation de la classe
      * 
      * @param string $lastname
      * @param string $firstname
@@ -20,99 +20,64 @@ class Person {
      */
     public function __construct($lastname, $firstname, $age, array $hobbies = [])
     {
-        $this->firstname = $firstname;
         $this->lastname = $lastname;
+        $this->firstname = $firstname;
         $this->age = $age;
         $this->hobbies = $hobbies;
     }
-    /**
-     * Methode appelée automatiquement quand  on traite un objet de la class en 
-     * chaine de caractère (ex : faire un echo dessus).
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->firstname . ' ' . $this->lastname;
-    }
 
-    /**
-     * Get the value of firstname
-     */ 
-    public function getFirstname()
-    {
-        return $this->firstname;
-    }
-
-    /**
-     * Set the value of firstname
-     *
-     * @return  self
-     */ 
-    public function setFirstname($firstname)
-    {
-        $this->firstname = $firstname;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of lastname
-     */ 
     public function getLastname()
     {
         return $this->lastname;
     }
 
-    /**
-     * Set the value of lastname
-     *
-     * @return  self
-     */ 
-    public function setLastname($lastname)
+    public function getFirstname()
     {
-        $this->lastname = $lastname;
-
-        return $this;
+        return $this->firstname;
     }
 
-    /**
-     * Get the value of age
-     */ 
     public function getAge()
     {
         return $this->age;
     }
 
-    /**
-     * Set the value of age
-     *
-     * @return  self
-     */ 
-    public function setAge($age)
+    public function setLastname($lastname)
     {
-        $this->age = $age;
-
+        $this->lastname = $lastname;
         return $this;
     }
 
-    /**
-     * Get the value of hobbies
-     */ 
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+        return $this;
+    }
+
+    public function setAge($age)
+    {
+        $this->age = $age;
+        return $this;
+    }
+
     public function getHobbies()
     {
         return $this->hobbies;
     }
 
-    /**
-     * Set the value of hobbies
-     *
-     * @return  self
-     */ 
     public function setHobbies(array $hobbies)
     {
         $this->hobbies = $hobbies;
-
         return $this;
+    }
+
+    /**
+     * Méthode appelée automatiquement quand on traite un objet de la classe
+     * en chaîne de caractère (ex : faire un echo dessus)
+     * 
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->firstname . ' ' . $this->lastname;
     }
 }

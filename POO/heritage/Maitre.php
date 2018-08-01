@@ -1,28 +1,35 @@
 <?php
-
 require_once 'Animal.php';
 
-class Maitre {
-
+class Maitre
+{
     /**
      *
-     * @var animal
+     * @var Animal
      */
     private $animal;
-
-    public function getAnimal(): animal {
+    
+    public function getAnimal(): Animal
+    {
         return $this->animal;
     }
 
-    public function setAnimal(animal $animal) {
+    public function setAnimal(Animal $animal)
+    {
         $this->animal = $animal;
         return $this;
     }
 
-    public function caresserAnimal ()
+    public function caresserAnimal()
     {
-        if (!empty($this->animal)){
+        if (!empty($this->animal)) {
             $this->animal->crier();
         }
+    }
+    
+    public function caresserUnAutreAnimal(Animal $animal)
+    {
+        
+            $animal->crier();
     }
 }

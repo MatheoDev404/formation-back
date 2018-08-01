@@ -1,0 +1,17 @@
+[2018-07-31 10:32:00] C:\xampp\htdocs\phpoo\exception\index.php 8 Je voulais que $a soit vrai
+[2018-07-31 10:32:30] C:\xampp\htdocs\phpoo\exception\index.php l8 Je voulais que $a soit vrai
+[2018-07-31 10:32:33] C:\xampp\htdocs\phpoo\exception\index.php l8 Je voulais que $a soit vrai
+[2018-07-31 10:33:03] C:\xampp\htdocs\phpoo\exception\index.php line 8 Je voulais que $a soit vrai
+[2018-07-31 10:35:12] C:\xampp\htdocs\phpoo\exception\index.php line 8 Je voulais que $a soit vrai
+
+#0 {main}[2018-07-31 10:35:54] C:\xampp\htdocs\phpoo\exception\index.php line 8 Je voulais que $a soit vrai
+#0 {main}
+[2018-07-31 10:37:03] C:\xampp\htdocs\phpoo\exception\Testeur.php line 7 10 expected, 5 given
+#0 C:\xampp\htdocs\phpoo\exception\index.php(25): Testeur->accepteDix(5)
+#1 {main}
+[2018-07-31 10:46:12] C:\xampp\htdocs\phpoo\exception\Testeur.php line 7 10 expected, 5 given
+#0 C:\xampp\htdocs\phpoo\exception\index.php(25): Testeur->accepteDix(5)
+#1 {main}
+[2018-07-31 10:46:24] C:\xampp\htdocs\phpoo\exception\Testeur.php line 7 10 expected, 5 given
+#0 C:\xampp\htdocs\phpoo\exception\index.php(25): Testeur->accepteDix(5)
+#1 {main}

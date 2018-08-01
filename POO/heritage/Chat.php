@@ -1,26 +1,30 @@
 <?php
-
 require_once 'Animal.php';
 
-/**
- * Description of Chat
- *
- * @author Etudiant
- */
+class Chat extends Animal
+{
+    protected $longeurPoils = 'court';
 
-class Chat extends Animal {
-
-    protected $longueurPoil = 'court';
-
-    public function identifier(): string {
+    /**
+     * Surcharge (= redéfinition) de la méthode identifier()
+     * de la classe Animal
+     * 
+     * @return string
+     */
+    public function identifier()
+    {
         // parent fait référence à la classe mère Animal
-        return parent::identifier() . ' et je suis un chat.';
+        return parent::identifier() . ' et je suis un chat';
     }
 
-    public function crier() {
+    public function crier()
+    {
         echo 'Miaou';
     }
 
+    /*
+     * Une méthode déclarée final ne peut pas être surchargée
+     */
     final public function ronronner()
     {
         echo 'Ronron';
