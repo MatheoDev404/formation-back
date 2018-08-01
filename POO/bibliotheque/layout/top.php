@@ -15,3 +15,4 @@
         <a class="navbar-brand" href="/phpoo/bibliotheque/">Bibliothèque</a>
   </nav>
     <div class="container">
+    <?php  \App\FlashMessage::displayFlashMessage(); ?>
