@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{#
+
+Lister les information des users dans un tableau html, avec la date de naissance au format français.
+
+#}
+<table class="table">
+    <thead>
+    <tr>
+            <td>Id</td>
+            <td>Nom</td>
+            <td>Prénom</td>
+            <td>email</td>
+            <td>Naissance</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.birthdate|date('Y/m/d') }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

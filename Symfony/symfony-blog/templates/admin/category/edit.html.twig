@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Edition categorie</h1>
+    {# OUvre la balise form #}
+    {{ form_start(form) }}
+
+    {# bloc de formualire pour le champ name #}
+    {{ form_row(form.name) }}
+
+    <div class="form-btn-group text-right">
+        <button type="submit" class="btn btn-primary">
+            Enregistrer
+        </button>
+        <a class="btn btn-outline-secondary" href="{{ path('app_admin_category_index') }}">
+            Retour
+        </a>
+    </div>
+
+    {# ferme la balise form #}
+    {{ form_end(form) }}
+{% endblock %}
